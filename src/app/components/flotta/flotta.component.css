@@ -1,244 +1,418 @@
-.flotta-container {
-  padding: 2rem;
-  padding-top: 120px;
-  color: #222;
-  background: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-  background-color: #f5f5dc;
+/* Global Variables & Reset */
+:host {
+  --primary-color: #0B2545; /* Deep Navy */
+  --accent-color: #C5A059;  /* Muted Gold */
+  --text-dark: #1A1A1A;
+  --text-light: #F4F4F4;
+  --bg-light: #F9FAFB;
+  --font-heading: 'Lora', serif;
+  --font-body: 'Libre Franklin', sans-serif;
+}
+
+.flotta-page {
+  background-color: var(--bg-light);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-x: hidden;
+  font-family: var(--font-body);
+  color: var(--text-dark);
 }
 
-.title {
-  font-size: 3rem;
-  margin-bottom: 3rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #2887a1;
-  text-align: center;
-  width: 100%;
-}
-
-/* Carousel wrapper for desktop */
-.carousel-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  width: 100%;
-  justify-content: center;
-  margin-top: 6rem;
-  margin-bottom: 3rem;
-}
-
-/* 3D Carousel Styles */
-.carousel-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.carousel-scene {
-  width: 300px;
-  height: 400px;
-  perspective: 1000px;
-}
-
-.carousel {
-  width: 100%;
-  height: 100%;
+/* Hero Section */
+.hero-section {
   position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  height: 60vh;
+  min-height: 400px;
+  background-image: url('https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=80&w=2000');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
 }
 
-.carousel-cell {
+.hero-overlay {
   position: absolute;
-  width: 280px;
-  height: 350px;
-  left: 10px;
-  top: 10px;
-  transition: opacity 0.5s;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(11, 37, 69, 0.7), rgba(11, 37, 69, 0.4));
 }
 
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.hero-line {
+  width: 80px;
+  height: 3px;
+  background-color: var(--accent-color);
+  margin: 0 auto;
+}
+
+/* Fleet Grid Section */
+.fleet-section {
+  padding: 5rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+/* Boat Card */
 .boat-card {
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #2887a1;
-  border-radius: 16px;
-  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+}
+
+.boat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.card-image-wrapper {
+  position: relative;
+  height: 250px;
   overflow: hidden;
 }
 
-.boat-card.selected {
-  border-width: 3px;
-  box-shadow: 0 0 25px rgba(40, 135, 161, 0.6);
-  background: white;
-}
-
-.boat-image {
+.card-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1rem;
+  transition: transform 0.6s ease;
 }
 
-.boat-card h3 {
-  color: #2887a1;
-  margin-top: auto;
-  margin-bottom: 1rem;
+.boat-card:hover .card-image {
+  transform: scale(1.05);
 }
 
-/* Controls */
-.nav-btn {
-  background: #2887a1;
-  color: white;
-  border: none;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(11, 37, 69, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.nav-btn:hover {
-  background: #206a80;
-  transform: scale(1.1);
+.boat-card:hover .card-overlay {
+  opacity: 1;
 }
 
-/* Details Section */
-.boat-details {
+.discover-btn {
+  color: white;
+  border: 1px solid var(--accent-color);
+  padding: 0.8rem 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  background: rgba(11, 37, 69, 0.8);
+  transition: all 0.3s ease;
+}
+
+.discover-btn:hover {
+  background: var(--accent-color);
+  color: var(--primary-color);
+}
+
+.card-content {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.boat-name {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.boat-short-desc {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.boat-specs-mini {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.boat-specs-mini i {
+  color: var(--accent-color);
+  margin-right: 5px;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 800px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
   background: white;
-  border-radius: 24px;
-  padding: 3rem;
-  border: 1px solid #2887a1;
-  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin-top: 4rem;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90vh;
+  border-radius: 4px;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.4s ease;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.detail-content h2 {
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
   font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: var(--accent-color);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-image-col {
+  flex: 1.2;
+  min-height: 400px;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-info-col {
+  flex: 1;
+  padding: 3rem;
+  background: white;
+  overflow-y: auto;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--primary-color);
   margin-bottom: 1rem;
-  color: #2887a1;
 }
 
-.detail-content p {
-  color: #444;
-  line-height: 1.6;
-  font-size: 1.1rem;
+.modal-line {
+  width: 60px;
+  height: 3px;
+  background: var(--accent-color);
+  margin-bottom: 2rem;
 }
 
-.specs {
+.modal-description {
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+
+.specs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #eee;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #eee;
 }
 
-.spec-item {
+.spec-box {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.label {
-  font-size: 0.9rem;
-  color: #666;
+.spec-label {
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: #888;
 }
 
-.value {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2887a1;
+.spec-value {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--primary-color);
+}
+
+.features-list {
+  margin-bottom: 3rem;
+}
+
+.features-list h4 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.features-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features-list li {
+  margin-bottom: 0.8rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.features-list i {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+}
+
+.contact-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-btn:hover {
+  background: #0f3460;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .modal-body {
+    flex-direction: column;
+  }
+  
+  .modal-image-col {
+    height: 300px;
+    flex: none;
+  }
+  
+  .close-btn {
+    color: var(--primary-color);
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .flotta-container {
-    padding: 1rem;
-    padding-top: 100px;
+  .hero-title {
+    font-size: 2.5rem;
   }
   
-  .title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  .fleet-grid {
+    grid-template-columns: 1fr;
   }
   
-  .carousel-wrapper {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .modal-info-col {
+    padding: 1.5rem;
   }
   
-  .carousel-content {
-    margin-bottom: 2rem;
-  }
-  
-  .carousel-scene {
-    width: 250px;
-    height: 350px;
-  }
-  
-  .carousel-cell {
-    width: 230px;
-    height: 300px;
-  }
-  
-  .nav-btn {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    background: rgba(40, 135, 161, 0.9);
-  }
-  
-  .nav-btn.prev {
-    left: 10px;
-  }
-  
-  .nav-btn.next {
-    right: 10px;
-  }
-  
-  .boat-details {
-    padding: 2rem;
-    margin-top: 2rem;
-  }
-  
-  .detail-content h2 {
-    font-size: 2rem;
-  }
-  
-  .specs {
+  .specs-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }

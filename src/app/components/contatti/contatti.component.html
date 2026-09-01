@@ -1,38 +1,135 @@
-<div class="contatti-container">
-  <div class="content-wrapper">
-    <div class="info-section">
-      <h1>Contattaci</h1>
-      <p class="subtitle">Siamo qui per realizzare i tuoi sogni nautici.</p>
-      
-      <div class="contact-details">
-        <div class="detail-item">
-          <h3>Sede</h3>
-          <p>Via del Porto, 123<br>Porto Cervo, Italia</p>
+<div class="contatti-page">
+  
+  <!-- Parallax Hero -->
+  <section class="parallax-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content animate-on-scroll">
+      <h1 class="hero-title">La Nostra Storia</h1>
+      <p class="hero-subtitle">Dal 1998, navighiamo verso l'eccellenza.</p>
+      <div class="hero-line"></div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scopri</span>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-row animate-on-scroll">
+        <div class="story-text">
+          <h2>Le Origini</h2>
+          <div class="section-line"></div>
+          <p>
+            Tutto è iniziato con una visione: portare l'eleganza del design italiano nelle acque di tutto il mondo. 
+            SEA Yacht nasce dalla passione di una famiglia di maestri d'ascia, evolvendosi negli anni in un 
+            simbolo di innovazione e lusso.
+          </p>
+          <p>
+            Ogni imbarcazione che consegniamo non è solo un prodotto, ma un capitolo della nostra storia 
+            che continua a scriversi insieme ai nostri armatori.
+          </p>
         </div>
-        <div class="detail-item">
-          <h3>Email</h3>
-          <p>info&#64;pythonyacht.com</p>
-        </div>
-        <div class="detail-item">
-          <h3>Telefono</h3>
-          <p>+39 012 345 6789</p>
+        <div class="story-image">
+          <img src="https://www.mangustayachts.com/wp-content/uploads/2024/05/2.Mangusta_GranSport_54_3_exteriors-6.jpg" alt="Yacht construction">
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="form-section">
-      <form>
-        <div class="form-group">
-          <input type="text" placeholder="Nome" required>
+  <!-- Philosophy / Values Section -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>La Nostra Filosofia</h2>
+        <p>I pilastri su cui costruiamo ogni sogno.</p>
+      </div>
+      
+      <div class="values-grid">
+        <div *ngFor="let value of values" class="value-card animate-on-scroll">
+          <div class="icon-wrapper">
+            <i class="bi" [ngClass]="value.icon"></i>
+          </div>
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.description }}</p>
         </div>
-        <div class="form-group">
-          <input type="email" placeholder="Email" required>
-        </div>
-        <div class="form-group">
-          <textarea placeholder="Messaggio" rows="5" required></textarea>
-        </div>
-        <button type="submit">Invia Messaggio</button>
-      </form>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-overlay"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div *ngFor="let stat of stats" class="stat-item animate-on-scroll">
+          <span class="stat-number">{{ stat.number }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-wrapper animate-on-scroll">
+        <div class="contact-info">
+          <h2>Parla con Noi</h2>
+          <p class="contact-intro">Siamo pronti ad ascoltare le tue esigenze e a guidarti verso la tua prossima avventura.</p>
+          
+          <div class="info-list">
+            <div class="info-item">
+              <i class="bi bi-geo-alt"></i>
+              <div>
+                <h4>Sede Principale</h4>
+                <p>Via del Porto, 123<br>Porto Cervo, Italia</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="bi bi-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>info&#64;SEAyacht.com</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="bi bi-telephone"></i>
+              <div>
+                <h4>Telefono</h4>
+                <p>+39 333 333 3333</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <form class="premium-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nome</label>
+                <input type="text" required>
+              </div>
+              <div class="form-group">
+                <label>Cognome</label>
+                <input type="text" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" required>
+            </div>
+            <div class="form-group">
+              <label>Messaggio</label>
+              <textarea rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Invia Richiesta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>

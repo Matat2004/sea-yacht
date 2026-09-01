@@ -1,44 +1,80 @@
-<div class="flotta-container">
-  <h1 class="title">La Nostra Flotta</h1>
-  
-  <div class="carousel-wrapper">
-    <button class="nav-btn prev" (click)="rotateCarousel(-1)">&#10094;</button>
-    
-    <div class="carousel-content">
-      <div class="carousel-scene">
-        <div class="carousel" [style.transform]="'rotateY(' + (selectedIndex * -72) + 'deg)'">
-          <div *ngFor="let boat of boats; let i = index" 
-               class="carousel-cell"
-               [style.transform]="'rotateY(' + (i * 72) + 'deg) translateZ(400px)'"
-               (click)="selectBoat(i)">
-            <div class="boat-card" [class.selected]="i === selectedIndex">
-              <img [src]="boat.image" [alt]="boat.name" class="boat-image">
-              <h3>{{ boat.name }}</h3>
+<div class="flotta-page">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">La Nostra Flotta</h1>
+      <p class="hero-subtitle">Eccellenza, Prestazioni e Stile Italiano</p>
+      <div class="hero-line"></div>
+    </div>
+  </section>
+
+  <!-- Fleet Grid Section -->
+  <section class="fleet-section">
+    <div class="container">
+      <div class="fleet-grid">
+        <div *ngFor="let boat of boats" class="boat-card" (click)="openDetail(boat)">
+          <div class="card-image-wrapper">
+            <img [src]="boat.image" [alt]="boat.name" class="card-image">
+            <div class="card-overlay">
+              <span class="discover-btn">Scopri di più</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h3 class="boat-name">{{ boat.name }}</h3>
+            <p class="boat-short-desc">{{ boat.shortDesc }}</p>
+            <div class="boat-specs-mini">
+              <span><i class="bi bi-rulers"></i> {{ boat.specs.length }}</span>
+              <span><i class="bi bi-speedometer2"></i> {{ boat.specs.speed }}</span>
+              <span><i class="bi bi-people"></i> {{ boat.specs.guests }}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-    <button class="nav-btn next" (click)="rotateCarousel(1)">&#10095;</button>
-  </div>
+  </section>
 
-  <div class="boat-details" *ngIf="selectedBoat">
-    <div class="detail-content">
-      <h2>{{ selectedBoat.name }}</h2>
-      <p>{{ selectedBoat.description }}</p>
-      <div class="specs">
-        <div class="spec-item">
-          <span class="label">Lunghezza</span>
-          <span class="value">{{ selectedBoat.specs.length }}</span>
+  <!-- Detail Modal -->
+  <div class="modal-backdrop" *ngIf="selectedBoat" (click)="closeDetail()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeDetail()">&times;</button>
+      
+      <div class="modal-body">
+        <div class="modal-image-col">
+          <img [src]="selectedBoat.image" [alt]="selectedBoat.name" class="modal-image">
         </div>
-        <div class="spec-item">
-          <span class="label">Velocità</span>
-          <span class="value">{{ selectedBoat.specs.speed }}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label">Ospiti</span>
-          <span class="value">{{ selectedBoat.specs.guests }}</span>
+        
+        <div class="modal-info-col">
+          <h2 class="modal-title">{{ selectedBoat.name }}</h2>
+          <div class="modal-line"></div>
+          
+          <p class="modal-description">{{ selectedBoat.description }}</p>
+          
+          <div class="specs-grid">
+            <div class="spec-box">
+              <span class="spec-label">Lunghezza</span>
+              <span class="spec-value">{{ selectedBoat.specs.length }}</span>
+            </div>
+            <div class="spec-box">
+              <span class="spec-label">Velocità</span>
+              <span class="spec-value">{{ selectedBoat.specs.speed }}</span>
+            </div>
+            <div class="spec-box">
+              <span class="spec-label">Ospiti</span>
+              <span class="spec-value">{{ selectedBoat.specs.guests }}</span>
+            </div>
+          </div>
+
+          <div class="features-list" *ngIf="selectedBoat.features">
+            <h4>Caratteristiche Principali</h4>
+            <ul>
+              <li *ngFor="let feature of selectedBoat.features">
+                <i class="bi bi-check2-circle"></i> {{ feature }}
+              </li>
+            </ul>
+          </div>
+
+          <button class="contact-btn">Richiedi Preventivo</button>
         </div>
       </div>
     </div>
