@@ -1050,3 +1050,78 @@
     transform: none;
   }
 }
+
+
+
+/* Icone freccia SVG: resa coerente su desktop e dispositivi mobili */
+.arrow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.arrow-icon svg,
+.model-arrow svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Frecce nei pulsanti principali */
+.btn-primary-custom .arrow-icon,
+.btn-secondary-custom .arrow-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-primary-custom .arrow-icon svg,
+.btn-secondary-custom .arrow-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Frecce nei link testuali */
+.text-link .arrow-icon,
+.model-discover .arrow-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Freccia circolare sulle immagini dei modelli */
+
+/* Freccia circolare sulle immagini dei modelli */
+.model-arrow {
+  display: grid;
+  place-items: center;
+}
+
+.model-arrow svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+
+/* Al passaggio del cursore, la freccia si ingrandisce leggermente */
+.model-image:hover .model-arrow svg {
+  transform: scale(1.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .model-arrow svg {
+    transition: none;
+  }
+}
+

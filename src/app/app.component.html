@@ -3,36 +3,27 @@
 ========================= -->
 <nav class="custom-navbar" [class.menu-open]="menuOpen" [class.navbar-transparent]="!isScrolled && !menuOpen"
   [class.navbar-scrolled]="isScrolled || menuOpen" aria-label="Navigazione principale">
-
   <div class="navbar-container">
 
     <!-- LOGO -->
     <a class="navbar-brand" routerLink="/" aria-label="SEA Yacht - Home" (click)="closeNavbar()">
-
       <svg class="navbar-logo-icon" viewBox="0 0 52 42" fill="none" aria-hidden="true">
-
         <path d="M3 13C14 13 17 4 27 4C35 4 40 10 49 10C39 13 35 21 26 21C17 21 12 14 3 13Z" fill="currentColor" />
-
         <path d="M3 22C13 22 17 15 25 15C33 15 39 21 49 19C40 24 35 29 27 29C17 29 12 23 3 22Z" fill="currentColor"
           opacity=".8" />
-
         <path d="M8 31C16 31 19 26 26 26C33 26 38 30 44 29C37 35 32 37 25 37C18 37 13 33 8 31Z" fill="currentColor"
           opacity=".6" />
-
       </svg>
 
       <span class="navbar-brand-text">
         <span class="navbar-brand-name">SEA</span>
         <span class="navbar-brand-subtitle">Y A C H T</span>
       </span>
-
     </a>
 
     <!-- MENU -->
     <div class="navbar-menu" [class.navbar-menu-open]="menuOpen" id="navbarNav">
-
       <ul class="navbar-links">
-
         <li>
           <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             (click)="closeNavbar()">
@@ -51,40 +42,41 @@
             Contatti
           </a>
         </li>
-
       </ul>
 
       <!-- CTA MOBILE -->
       <a class="navbar-cta navbar-cta-mobile" routerLink="/contatti" (click)="closeNavbar()">
-
         <span>Richiedi informazioni</span>
-        <span class="navbar-cta-icon" aria-hidden="true">↗</span>
 
+        <span class="navbar-cta-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d="M7 17 17 7M7 7h10v10" />
+          </svg>
+        </span>
       </a>
-
     </div>
 
     <!-- CTA DESKTOP -->
     <a class="navbar-cta navbar-cta-desktop" routerLink="/contatti">
-
       <span>Richiedi informazioni</span>
-      <span class="navbar-cta-icon" aria-hidden="true">↗</span>
 
+      <span class="navbar-cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" focusable="false">
+          <path d="M7 17 17 7M7 7h10v10" />
+        </svg>
+      </span>
     </a>
 
     <!-- HAMBURGER MOBILE -->
     <button class="navbar-toggler" type="button" [attr.aria-expanded]="menuOpen" aria-controls="navbarNav"
       [attr.aria-label]="menuOpen ? 'Chiudi menu' : 'Apri menu'" (click)="toggleNavbar()">
-
       <span [class.line-1-open]="menuOpen"></span>
       <span [class.line-2-open]="menuOpen"></span>
       <span [class.line-3-open]="menuOpen"></span>
-
     </button>
 
   </div>
 </nav>
-
 
 <!-- =========================
      CONTENUTO PAGINE
@@ -93,50 +85,39 @@
   <router-outlet />
 </main>
 
-
 <!-- =========================
      FOOTER
 ========================= -->
 <footer class="footer-custom">
-
   <div class="container footer-container">
 
     <div class="footer-main">
 
       <!-- BRAND -->
       <div class="footer-brand">
-
         <a class="footer-brand-link" routerLink="/" aria-label="SEA Yacht - Home">
-
           <svg class="footer-logo-icon" viewBox="0 0 52 42" fill="none" aria-hidden="true">
-
             <path d="M3 13C14 13 17 4 27 4C35 4 40 10 49 10C39 13 35 21 26 21C17 21 12 14 3 13Z" fill="currentColor" />
-
             <path d="M3 22C13 22 17 15 25 15C33 15 39 21 49 19C40 24 35 29 27 29C17 29 12 23 3 22Z" fill="currentColor"
               opacity=".8" />
-
             <path d="M8 31C16 31 19 26 26 26C33 26 38 30 44 29C37 35 32 37 25 37C18 37 13 33 8 31Z" fill="currentColor"
               opacity=".6" />
-
           </svg>
 
           <span class="footer-brand-text">
             <span class="footer-brand-name">SEA</span>
             <span class="footer-brand-subtitle">Y A C H T</span>
           </span>
-
         </a>
 
         <p>
           Il piacere di vivere il mare, con imbarcazioni
           selezionate per chi cerca qualità, comfort e stile.
         </p>
-
       </div>
 
       <!-- NAVIGAZIONE -->
       <div class="footer-column">
-
         <h2>Esplora</h2>
 
         <a routerLink="/" routerLinkActive="footer-link-active" [routerLinkActiveOptions]="{ exact: true }">
@@ -150,16 +131,19 @@
         <a routerLink="/contatti" routerLinkActive="footer-link-active">
           Contatti
         </a>
-
       </div>
 
       <!-- CONTATTI -->
       <div class="footer-column footer-contacts">
-
         <h2>Parliamone</h2>
 
         <p>
-          <span class="footer-contact-icon" aria-hidden="true">&#64;</span>
+          <span class="footer-contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" focusable="false">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m4 7 8 6 8-6" />
+            </svg>
+          </span>
 
           <a href="mailto:info@SEAyacht.com">
             info&#64;SEAyacht.com
@@ -167,7 +151,12 @@
         </p>
 
         <p>
-          <span class="footer-contact-icon" aria-hidden="true">☎</span>
+          <span class="footer-contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" focusable="false">
+              <path
+                d="M7.2 3.5h2.6l1.3 4.2-1.8 1.5a14.5 14.5 0 0 0 5.5 5.5l1.5-1.8 4.2 1.3v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 5.2 5.7a2 2 0 0 1 2-2.2Z" />
+            </svg>
+          </span>
 
           <a href="tel:+393333333333">
             +39 333 333 3333
@@ -175,51 +164,36 @@
         </p>
 
         <a class="footer-contact-cta" routerLink="/contatti">
-
           Richiedi informazioni
           <span aria-hidden="true">→</span>
-
         </a>
-
       </div>
 
     </div>
 
     <!-- BARRA INFERIORE -->
     <div class="footer-bottom">
-
       <p class="footer-copy">
         © {{ currentYear }} SEA Yacht.
         Tutti i diritti riservati.
       </p>
 
       <div class="footer-social">
-
         <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram SEA Yacht">
-
           <i class="bi bi-instagram" aria-hidden="true"></i>
-
         </a>
 
         <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube SEA Yacht">
-
           <i class="bi bi-youtube" aria-hidden="true"></i>
-
         </a>
-
       </div>
-
     </div>
 
   </div>
-
 </footer>
 
-
 <!-- SCROLL TO TOP -->
-
 <button *ngIf="showScrollTop" class="scroll-to-top" type="button" (click)="scrollToTop()"
   aria-label="Torna all'inizio della pagina" title="Torna all'inizio">
-
   <i class="bi bi-arrow-up" aria-hidden="true"></i>
 </button>

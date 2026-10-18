@@ -11,6 +11,10 @@
   --sea-muted: #aebdc7;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* ========================================
    NAVBAR
 ======================================== */
@@ -38,7 +42,8 @@
     backdrop-filter 0.3s ease;
 }
 
-/* Home: navbar trasparente sopra il video */
+/* Navbar trasparente sopra il video della Home */
+
 .custom-navbar.navbar-transparent {
   background: transparent;
   border-bottom-color: transparent;
@@ -48,6 +53,7 @@
 }
 
 /* Navbar dopo lo scroll e nelle pagine interne */
+
 .custom-navbar.navbar-scrolled {
   background: rgba(11, 36, 54, 0.94);
   border-bottom-color: rgba(255, 255, 255, 0.1);
@@ -57,6 +63,7 @@
 }
 
 /* Logo e link sopra il video */
+
 .custom-navbar.navbar-transparent .navbar-brand,
 .custom-navbar.navbar-transparent .navbar-brand:hover,
 .custom-navbar.navbar-transparent .nav-link,
@@ -71,6 +78,7 @@
 }
 
 /* Contenitore principale */
+
 .navbar-container {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -225,6 +233,8 @@
   transform: translateY(-1px);
 }
 
+/* Cerchio della freccia SVG */
+
 .navbar-cta-icon {
   display: grid;
   flex: 0 0 34px;
@@ -236,10 +246,24 @@
   background: var(--sea-navy);
   border-radius: 50%;
 
-  font-size: 1.05rem;
-
   transition: transform 0.25s ease;
 }
+
+/* Freccia SVG: non dipende dai font del dispositivo */
+
+.navbar-cta-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Mantiene la rotazione originale al passaggio del mouse */
 
 .navbar-cta:hover .navbar-cta-icon {
   transform: rotate(45deg);
@@ -436,6 +460,8 @@
   color: var(--sea-white);
 }
 
+/* Icone contatto SVG */
+
 .footer-contact-icon {
   display: grid;
   flex: 0 0 30px;
@@ -448,6 +474,19 @@
   border-radius: 50%;
 }
 
+.footer-contact-icon svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* CTA contatti */
+
 .footer-column .footer-contact-cta {
   display: inline-flex;
   align-items: center;
@@ -459,6 +498,15 @@
   color: var(--sea-blue-light);
   border-bottom: 1px solid rgba(213, 233, 240, 0.45);
   font-weight: 600;
+}
+
+.footer-contact-cta span {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.footer-contact-cta:hover span {
+  transform: translateX(3px);
 }
 
 /* Footer - barra inferiore */
@@ -519,7 +567,6 @@
 /* ========================================
    SCROLL TO TOP
 ======================================== */
-
 
 .scroll-to-top {
   position: fixed;
@@ -584,29 +631,6 @@
     transform: translateY(0);
   }
 }
-
-@media (max-width: 767px) {
-  .scroll-to-top {
-    right: 18px;
-    bottom: 18px;
-    width: 44px;
-    height: 44px;
-  }
-
-  .scroll-to-top i {
-    font-size: 18px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-to-top,
-  .scroll-to-top i {
-    animation: none;
-    transition: none;
-  }
-}
-
-
 
 /* ========================================
    TABLET
@@ -676,6 +700,7 @@
   }
 
   /* Menu mobile */
+
   .navbar-menu {
     position: absolute;
     top: 100%;
@@ -743,6 +768,7 @@
   }
 
   /* Menu aperto: sfondo sempre scuro */
+
   .custom-navbar.menu-open {
     background: rgba(11, 36, 54, 0.98);
     border-bottom-color: rgba(255, 255, 255, 0.12);
@@ -753,6 +779,7 @@
   }
 
   /* Footer mobile */
+
   .footer-container {
     padding-top: 48px;
   }
@@ -812,23 +839,12 @@
    ANIMAZIONI ACCESSIBILI
 ======================================== */
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .custom-navbar,
   .custom-navbar *,
   .footer-custom *,
-  .scroll-to-top {
+  .scroll-to-top,
+  .scroll-to-top i {
     animation: none !important;
     transition: none !important;
   }

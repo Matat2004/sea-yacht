@@ -1,3 +1,4 @@
+
 :host {
   --navy: #102f46;
   --sea: #247e9c;
@@ -36,15 +37,14 @@ button {
   font: inherit;
 }
 
-
 /* HERO */
 
 .fleet-hero {
   position: relative;
-  min-height: 590px;
-  height: min(76svh, 780px);
   display: flex;
   align-items: center;
+  min-height: 590px;
+  height: min(76svh, 780px);
   color: var(--white);
   background: var(--navy);
   isolation: isolate;
@@ -167,8 +167,7 @@ button {
   letter-spacing: 2px;
 }
 
-
-/* INTRO */
+/* INTRODUZIONE */
 
 .fleet-intro {
   display: grid;
@@ -239,8 +238,7 @@ button {
   letter-spacing: 1.4px;
 }
 
-
-/* FLEET GRID */
+/* GRIGLIA IMBARCAZIONI */
 
 .fleet-list {
   max-width: 1280px;
@@ -348,6 +346,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 15px 17px;
   background: rgba(16, 47, 70, 0.91);
   color: var(--white);
@@ -360,9 +359,9 @@ button {
     transform 0.3s ease;
 }
 
-.boat-card__action span {
-  color: var(--sand);
-  font-size: 17px;
+.boat-card__action-label {
+  color: var(--white);
+  font-size: 11px;
 }
 
 .boat-card:hover .boat-card__action,
@@ -370,6 +369,38 @@ button {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* SVG CONDIVISI */
+
+.arrow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--sand);
+  line-height: 1;
+}
+
+.arrow-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+
+.boat-card__image:hover .boat-card__action .arrow-icon svg,
+.boat-card__image:focus-visible .boat-card__action .arrow-icon svg {
+  transform: scale(1.12);
+}
+
+/* CORPO CARD */
 
 .boat-card__body {
   padding: 24px 2px 0;
@@ -424,6 +455,8 @@ button {
   font-weight: 500;
 }
 
+/* PULSANTE SVG DELLA CARD */
+
 .boat-card__arrow {
   display: grid;
   place-items: center;
@@ -431,16 +464,28 @@ button {
   width: 38px;
   height: 38px;
   margin-left: auto;
+  padding: 0;
   border: 1px solid #d8dfe1;
   border-radius: 50%;
   background: transparent;
   color: var(--navy);
-  font-size: 17px;
   cursor: pointer;
   transition:
     color 0.25s ease,
-    background 0.25s ease,
+    background-color 0.25s ease,
     border-color 0.25s ease;
+}
+
+.boat-card__arrow svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
 }
 
 .boat-card__arrow:hover {
@@ -449,8 +494,12 @@ button {
   color: var(--white);
 }
 
+.boat-card__arrow:hover svg,
+.boat-card__arrow:focus-visible svg {
+  transform: scale(1.12);
+}
 
-/* CTA */
+/* CTA FINALE */
 
 .fleet-cta {
   position: relative;
@@ -525,8 +574,7 @@ button {
   pointer-events: none;
 }
 
-
-/* MODAL */
+/* MODAL DETTAGLI */
 
 .boat-modal {
   position: fixed;
@@ -561,11 +609,11 @@ button {
 }
 
 .boat-modal__visual img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
-  position: absolute;
-  inset: 0;
   object-fit: cover;
 }
 
@@ -686,13 +734,18 @@ button {
 
 .boat-modal__features li {
   display: flex;
+  align-items: flex-start;
   gap: 10px;
   color: #58666e;
   font-size: 11px;
   line-height: 1.6;
 }
 
-.boat-modal__features li span {
+.boat-modal__features li .arrow-icon {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
   color: var(--sea);
 }
 
@@ -701,7 +754,6 @@ button {
   width: 100%;
   margin-top: 26px;
 }
-
 
 /* ANIMAZIONI */
 
@@ -742,8 +794,13 @@ button {
 }
 
 @keyframes modalFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes modalUp {
@@ -758,8 +815,7 @@ button {
   }
 }
 
-
-/* RESPONSIVE */
+/* RESPONSIVE TABLET */
 
 @media (max-width: 1250px) {
   .fleet-intro {
@@ -822,6 +878,8 @@ button {
     padding: 35px 30px;
   }
 }
+
+/* RESPONSIVE MOBILE */
 
 @media (max-width: 600px) {
   .fleet-hero {
@@ -958,12 +1016,21 @@ button {
   }
 }
 
+/* DISPOSITIVI TOUCH */
+
 @media (hover: none) {
   .boat-card__action {
     opacity: 1;
     transform: none;
   }
+
+  .boat-card__action .arrow-icon svg,
+  .boat-card__arrow svg {
+    transform: none;
+  }
 }
+
+/* ACCESSIBILITÀ: RIDUZIONE ANIMAZIONI */
 
 @media (prefers-reduced-motion: reduce) {
   *,
