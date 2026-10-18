@@ -1,5 +1,13 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  PLATFORM_ID,
+  inject
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-contatti',
@@ -8,59 +16,84 @@ import { CommonModule } from '@angular/common';
   templateUrl: './contatti.component.html',
   styleUrl: './contatti.component.css'
 })
-export class ContattiComponent implements OnInit, AfterViewInit {
-  
-  values = [
+export class ContattiComponent implements AfterViewInit, OnDestroy {
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private readonly platformId = inject(PLATFORM_ID);
+
+  private observer?: IntersectionObserver;
+
+  readonly values = [
+    {
+      icon: 'bi-compass',
+      title: 'Ascolto',
+      description:
+        'Ogni scelta parte dalle tue esigenze, dalle tue abitudini e dal tuo modo di vivere il mare.'
+    },
     {
       icon: 'bi-gem',
-      title: 'Eccellenza',
-      description: 'Ogni dettaglio è curato con precisione maniacale per garantire la massima qualità.'
+      title: 'Qualità',
+      description:
+        'Attenzione alle caratteristiche, ai dettagli e a ciò che rende un’imbarcazione adatta a te.'
     },
     {
-      icon: 'bi-heart',
-      title: 'Passione',
-      description: 'Il mare è la nostra vita. Costruiamo barche per chi condivide questo amore.'
-    },
-    {
-      icon: 'bi-palette',
-      title: 'Stile Italiano',
-      description: 'Design senza tempo che unisce eleganza classica e innovazione moderna.'
+      icon: 'bi-people',
+      title: 'Relazione',
+      description:
+        'Un rapporto diretto e trasparente, costruito attraverso il dialogo e la fiducia.'
     }
   ];
 
-  stats = [
-    { number: '25+', label: 'Anni di Esperienza' },
-    { number: '500+', label: 'Barche Consegnate' },
-    { number: '100%', label: 'Clienti Soddisfatti' },
-    { number: '50', label: 'Premi Internazionali' }
-  ];
+  scrollToStory(event: Event): void {
+  event.preventDefault();
 
-  constructor() {}
+  const storySection =
+    this.elementRef.nativeElement.querySelector('#storia');
 
-  ngOnInit() {
-    window.scrollTo(0, 0);
-  }
+  storySection?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
 
-  ngAfterViewInit() {
-    this.setupScrollAnimations();
-  }
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
 
-  setupScrollAnimations() {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
+    const elements: NodeListOf<HTMLElement> =
+  this.elementRef.nativeElement.querySelectorAll(
+    '.animate-on-scroll'
+  );
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((element: HTMLElement) => {
+        element.classList.add('visible');
       });
-    }, observerOptions);
+      return;
+    }
 
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => observer.observe(el));
+    this.observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            this.observer?.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.1
+      }
+    );
+
+    elements.forEach((element: HTMLElement) => {
+      this.observer?.observe(element);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 }

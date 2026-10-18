@@ -1,57 +1,76 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
-import { Router, RouterOutlet, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Component, HostListener, OnDestroy } from '@angular/core';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet
+} from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, RouterLink, RouterLinkActive],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'python-yatch';
-  isNavbarVisible = true;
+export class AppComponent implements OnDestroy {
   showScrollTop = false;
-  private lastScrollTop = 0;
+  menuOpen = false;
+  currentYear = new Date().getFullYear();
 
-  constructor(private router: Router) {
-    // Close mobile navbar on route change
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.closeNavbar();
+  isScrolled = false;
+
+  private readonly routerSubscription: Subscription;
+
+  constructor(private readonly router: Router) {
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.closeNavbar();
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'auto'
+        });
+
+        this.isScrolled = false;
+        this.showScrollTop = false;
+      });
+  }
+
+  toggleNavbar(): void {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeNavbar(): void {
+    this.menuOpen = false;
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    const scrollTop =
+      window.scrollY || document.documentElement.scrollTop;
+
+    this.isScrolled = scrollTop > 50;
+    this.showScrollTop = scrollTop > 300;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
 
-  private closeNavbar() {
-    const navbarCollapse = document.getElementById('navbarNav');
-    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-      navbarCollapse.classList.remove('show');
-    }
-  }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Auto-hide navbar logic
-    if (scrollTop > this.lastScrollTop && scrollTop > 100) {
-      // Scrolling down
-      this.isNavbarVisible = false;
-    } else if (scrollTop < this.lastScrollTop) {
-      // Scrolling up
-      this.isNavbarVisible = true;
-    }
-    
-    // Show scroll to top button after scrolling 300px
-    this.showScrollTop = scrollTop > 300;
-    
-    this.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  }
-
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe();
   }
 }

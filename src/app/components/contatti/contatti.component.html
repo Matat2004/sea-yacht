@@ -1,135 +1,157 @@
-<div class="contatti-page">
-  
-  <!-- Parallax Hero -->
-  <section class="parallax-hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
+<main class="about-page">
+
+  <!-- Hero con parallasse -->
+  <section class="parallax-hero" aria-labelledby="hero-title">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
     <div class="hero-content animate-on-scroll">
-      <h1 class="hero-title">La Nostra Storia</h1>
-      <p class="hero-subtitle">Dal 1998, navighiamo verso l'eccellenza.</p>
-      <div class="hero-line"></div>
+      <span class="eyebrow">SEA YACHT · DAL 1998</span>
+      <h1 id="hero-title" class="hero-title">Il mare, la nostra storia.</h1>
+      <p class="hero-subtitle">
+        Una passione che guida ogni scelta, una relazione che continua oltre la navigazione.
+      </p>
+      <a class="hero-link" href="#storia" (click)="scrollToStory($event)">
+        Scopri chi siamo
+        <i class="bi bi-arrow-down" aria-hidden="true"></i>
+      </a>
     </div>
-    <div class="scroll-indicator">
-      <span>Scopri</span>
-      <i class="bi bi-chevron-down"></i>
+
+    <div class="hero-caption" aria-hidden="true">
+      <span>Oltre l'orizzonte</span>
     </div>
   </section>
 
-  <!-- Our Story Section -->
-  <section class="story-section">
-    <div class="container">
-      <div class="story-row animate-on-scroll">
-        <div class="story-text">
-          <h2>Le Origini</h2>
-          <div class="section-line"></div>
-          <p>
-            Tutto è iniziato con una visione: portare l'eleganza del design italiano nelle acque di tutto il mondo. 
-            SEA Yacht nasce dalla passione di una famiglia di maestri d'ascia, evolvendosi negli anni in un 
-            simbolo di innovazione e lusso.
-          </p>
-          <p>
-            Ogni imbarcazione che consegniamo non è solo un prodotto, ma un capitolo della nostra storia 
-            che continua a scriversi insieme ai nostri armatori.
-          </p>
-        </div>
-        <div class="story-image">
-          <img src="https://www.mangustayachts.com/wp-content/uploads/2024/05/2.Mangusta_GranSport_54_3_exteriors-6.jpg" alt="Yacht construction">
-        </div>
+  <!-- Storia -->
+  <section class="story-section" id="storia">
+    <div class="container story-layout">
+      <div class="story-heading animate-on-scroll">
+        <span class="eyebrow eyebrow-dark">LA NOSTRA IDENTITÀ</span>
+        <h2>Una passione<br>che viene dal mare.</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="story-content animate-on-scroll">
+        <p class="story-lead">
+          Crediamo che scegliere uno yacht significhi scegliere un modo di vivere il mare.
+        </p>
+        <p>
+          SEA Yacht nasce dalla passione per la navigazione e dalla ricerca
+          di imbarcazioni capaci di unire personalità, comfort e qualità.
+          Ogni percorso parte dall'ascolto: capire chi sei, come ami navigare
+          e cosa desideri trovare nella tua prossima imbarcazione.
+        </p>
+        <p>
+          Per noi il rapporto con il cliente non si esaurisce nella scelta
+          di una barca. È un dialogo fatto di attenzione, trasparenza e
+          accompagnamento, dalla prima richiesta fino al prossimo orizzonte.
+        </p>
       </div>
     </div>
+
+    <div class="story-image-wrap animate-on-scroll">
+      <img src="https://www.mangustayachts.com/wp-content/uploads/2024/05/2.Mangusta_GranSport_54_3_exteriors-6.jpg"
+        alt="Yacht di lusso in navigazione" loading="lazy">
+      <span class="image-caption">Il piacere di scegliere la propria rotta.</span>
+    </div>
   </section>
 
-  <!-- Philosophy / Values Section -->
+  <!-- Filosofia -->
   <section class="values-section">
     <div class="container">
       <div class="section-header animate-on-scroll">
-        <h2>La Nostra Filosofia</h2>
-        <p>I pilastri su cui costruiamo ogni sogno.</p>
+        <span class="eyebrow eyebrow-dark">IL NOSTRO APPROCCIO</span>
+        <h2>Ciò che conta davvero.</h2>
+        <p>
+          Non solo imbarcazioni, ma attenzione alle persone e al modo in cui
+          desiderano vivere il mare.
+        </p>
       </div>
-      
+
       <div class="values-grid">
-        <div *ngFor="let value of values" class="value-card animate-on-scroll">
-          <div class="icon-wrapper">
+        <article *ngFor="let value of values; let i = index" class="value-item animate-on-scroll">
+
+          <span class="value-index">0{{ i + 1 }}</span>
+
+          <div class="value-icon" aria-hidden="true">
             <i class="bi" [ngClass]="value.icon"></i>
           </div>
+
           <h3>{{ value.title }}</h3>
           <p>{{ value.description }}</p>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="stats-section">
-    <div class="stats-overlay"></div>
-    <div class="container">
-      <div class="stats-grid">
-        <div *ngFor="let stat of stats" class="stat-item animate-on-scroll">
-          <span class="stat-number">{{ stat.number }}</span>
-          <span class="stat-label">{{ stat.label }}</span>
-        </div>
-      </div>
+  <!-- Immagine e frase editoriale -->
+  <section class="manifesto-section">
+    <div class="manifesto-image" aria-hidden="true"></div>
+    <div class="manifesto-overlay" aria-hidden="true"></div>
+
+    <div class="manifesto-content animate-on-scroll">
+      <span class="eyebrow">LA FILOSOFIA SEA YACHT</span>
+      <p>
+        Il lusso più grande è sentirsi esattamente
+        <em>dove si vuole essere.</em>
+      </p>
+      <span class="manifesto-line"></span>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-wrapper animate-on-scroll">
-        <div class="contact-info">
-          <h2>Parla con Noi</h2>
-          <p class="contact-intro">Siamo pronti ad ascoltare le tue esigenze e a guidarti verso la tua prossima avventura.</p>
-          
-          <div class="info-list">
-            <div class="info-item">
-              <i class="bi bi-geo-alt"></i>
-              <div>
-                <h4>Sede Principale</h4>
-                <p>Via del Porto, 123<br>Porto Cervo, Italia</p>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="bi bi-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <p>info&#64;SEAyacht.com</p>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="bi bi-telephone"></i>
-              <div>
-                <h4>Telefono</h4>
-                <p>+39 333 333 3333</p>
-              </div>
-            </div>
+  <!-- Contatti diretti, senza form -->
+  <section class="contact-section" id="contatti">
+    <div class="container contact-layout">
+      <div class="contact-heading animate-on-scroll">
+        <span class="eyebrow eyebrow-dark">PARLIAMONE</span>
+        <h2>La tua prossima rotta<br>inizia da qui.</h2>
+        <p>
+          Stai cercando un'imbarcazione o vuoi semplicemente saperne di più?
+          Raccontaci cosa hai in mente: saremo felici di ascoltarti.
+        </p>
+      </div>
+
+      <div class="contact-actions animate-on-scroll">
+        <a class="contact-action contact-action-primary" href="https://wa.me/393333333333" target="_blank"
+          rel="noopener noreferrer" aria-label="Contatta SEA Yacht su WhatsApp">
+
+          <span class="contact-action-icon">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+          </span>
+
+          <span class="contact-action-copy">
+            <span class="contact-action-label">CONTATTO DIRETTO</span>
+            <strong>Scrivici su WhatsApp</strong>
+            <span>Per una richiesta veloce e informale</span>
+          </span>
+
+          <i class="bi bi-arrow-up-right action-arrow" aria-hidden="true"></i>
+        </a>
+
+        <a class="contact-action" href="mailto:info@SEAyacht.com?subject=Richiesta%20informazioni%20SEA%20Yacht">
+
+          <span class="contact-action-icon">
+            <i class="bi bi-envelope" aria-hidden="true"></i>
+          </span>
+
+          <span class="contact-action-copy">
+            <span class="contact-action-label">RICHIESTE E INFORMAZIONI</span>
+            <strong>Scrivici un'email</strong>
+            <span>Per richieste più dettagliate</span>
+          </span>
+
+          <i class="bi bi-arrow-up-right action-arrow" aria-hidden="true"></i>
+        </a>
+
+        <div class="contact-detail">
+          <i class="bi bi-geo-alt" aria-hidden="true"></i>
+          <div>
+            <strong>SEA Yacht</strong>
+            <span>Porto Cervo, Italia</span>
           </div>
         </div>
-
-        <div class="contact-form-wrapper">
-          <form class="premium-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label>Nome</label>
-                <input type="text" required>
-              </div>
-              <div class="form-group">
-                <label>Cognome</label>
-                <input type="text" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" required>
-            </div>
-            <div class="form-group">
-              <label>Messaggio</label>
-              <textarea rows="4" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Invia Richiesta</button>
-          </form>
-        </div>
       </div>
     </div>
   </section>
 
-</div>
+</main>

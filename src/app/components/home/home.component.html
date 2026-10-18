@@ -1,71 +1,303 @@
-<div class="hero-container position-relative">
-  <video autoplay muted loop playsinline class="w-100 h-100 object-fit-cover">
-    <source src="https://cdn.pixabay.com/video/2019/04/23/23011-332483109_tiny.mp4" type="video/mp4"/>
+<!-- ========================================
+     HERO VIDEO
+======================================== -->
+<section class="hero-section">
+
+  <video class="hero-video" #heroVideo autoplay muted loop playsinline preload="auto" aria-hidden="true">
+
+    <source src="/barche.mp4" type="video/mp4" />
+
   </video>
 
-  <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center text-white px-3">
-    <h1 class="display-4 fw-bold mb-3">Esplora il mare con stile</h1>
-    <p class="lead mb-4">Gommoni e barche selezionati per veri appassionati</p>
-  </div>
-</div>
+  <div class="hero-overlay"></div>
 
-<section class="about-modern-section py-5">
-  <div class="container-fluid px-0">
-    <div class="row g-0 align-items-stretch">
-      
-      <!-- Immagine a sinistra -->
-      <div class="col-md-6">
-        <img src="https://www.yachtdigest.com/wp-content/uploads/2019/11/MCY-70-Monte-Carlo-Yachts-1.jpg" 
-             alt="Yacht in mare" 
-             class="img-fluid w-100 h-100 object-fit-cover">
-      </div>
+  <div class="hero-content">
 
-      <!-- Testo a destra -->
-      <div class="col-md-6 d-flex align-items-center bg-overlay text-white">
-        <div class="p-5">
-          <h2 class="display-5 fw-bold mb-4">
-            <i class="bi bi-stars me-2"></i> Chi siamo
-          </h2>
-          <p class="lead mb-3">
-            <strong>SEA yacht</strong> progetta e realizza gommoni dallo stile unico e ricercato, ideali per vivere il mare in ogni suo aspetto.
-          </p>
-          <p class="mb-3">
-            I modelli <strong>C-27 S</strong> e <strong>C 33</strong> offrono cabine confortevoli per soggiorni a bordo, curati nei minimi dettagli.
-          </p>
-          <p class="mb-0">
-            Il nostro obiettivo è garantire <strong>eleganza</strong>, <strong>stile</strong> e <strong>sicurezza</strong> in ogni esperienza in mare, con un supporto dedicato per ogni esigenza.
-          </p>
-        </div>
-      </div>
+    <span class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      SEA YACHT <span class="eyebrow-separator">·</span> VIVI IL MARE
+    </span>
+
+    <h1>
+      Esplora il mare
+      <span>con stile.</span>
+    </h1>
+
+    <p>
+      Gommoni dal design ricercato, comfort a bordo e libertà
+      di vivere ogni giornata secondo il tuo ritmo.
+    </p>
+
+    <div class="hero-actions">
+
+      <a class="btn-primary-custom" routerLink="/flotta">
+        Scopri la flotta
+        <span aria-hidden="true">↗</span>
+      </a>
+
+      <a class="btn-secondary-custom" routerLink="/contatti">
+        Scopri SEA Yacht
+        <span aria-hidden="true">↗</span>
+      </a>
 
     </div>
+
   </div>
+
+  <div class="hero-bottom">
+
+    <span class="hero-bottom-label">
+      DESIGN <span>·</span> COMFORT <span>·</span> LIBERTÀ
+    </span>
+
+    <a href="#punti-forza" class="scroll-indicator">
+      <span>SCOPRI DI PIÙ</span>
+      <span class="scroll-indicator-line"></span>
+    </a>
+
+  </div>
+
 </section>
 
 
+<!-- ========================================
+     PUNTI DI FORZA
+======================================== -->
+<section class="benefits-section" id="punti-forza">
+
+  <div class="benefits-container">
+
+    <article class="benefit-item">
+      <span class="benefit-number">01</span>
+      <div>
+        <h2>Design ricercato</h2>
+        <p>Linee contemporanee e dettagli curati.</p>
+      </div>
+    </article>
+
+    <article class="benefit-item">
+      <span class="benefit-number">02</span>
+      <div>
+        <h2>Comfort a bordo</h2>
+        <p>Spazi pensati per godersi il mare.</p>
+      </div>
+    </article>
+
+    <article class="benefit-item">
+      <span class="benefit-number">03</span>
+      <div>
+        <h2>Modelli selezionati</h2>
+        <p>Una flotta per differenti esigenze.</p>
+      </div>
+    </article>
+
+    <article class="benefit-item">
+      <span class="benefit-number">04</span>
+      <div>
+        <h2>Supporto dedicato</h2>
+        <p>Un punto di riferimento nella tua scelta.</p>
+      </div>
+    </article>
+
+  </div>
+
+</section>
 
 
+<!-- ========================================
+     CHI SIAMO
+======================================== -->
+<section class="about-section" id="chi-siamo">
 
-<section class="gallery-section py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4 gallery-title">
-      La Nostra Galleria
-      <span class="gallery-underline"></span>
+  <div class="about-image">
+
+    <img src="/barca1.avif" alt="Imbarcazione in navigazione sul mare" loading="lazy" />
+
+    <div class="image-caption">
+      <span>IL MARE, SECONDO SEA YACHT</span>
+    </div>
+
+  </div>
+
+  <div class="about-content">
+
+    <span class="section-eyebrow">
+      LA NOSTRA FILOSOFIA
+    </span>
+
+    <h2>
+      Ogni uscita in mare
+      <span>merita qualcosa di speciale.</span>
     </h2>
-    <div class="gallery-2x2">
-      <div class="gallery-item"><img src="https://www.customline-yacht.com/portals/18/skins/customline/assets/img/model/keypoints/N50_4.jpg" alt="Foto 1"></div>
-      <div class="gallery-item"><img src="https://media.barchenews.it/src/images/news/articles/ima-image-45899.jpg" alt="Foto 2"></div>
-      <div class="gallery-item"><img src="https://www.italianyachtstore.com/wp-content/uploads/2023/09/custom-line-navetta-37-1-1110x630-1.jpg" alt="Foto 3"></div>
-      <div class="gallery-item"><img src="https://www.absoluteyachts.com/web/app/uploads/2021/10/yacht-di-lusso.jpg" alt="Foto 4"></div>
-    </div>
+
+    <p>
+      SEA Yacht nasce dalla passione per la navigazione e dalla
+      ricerca di imbarcazioni capaci di unire estetica, funzionalità
+      e piacere di vivere il mare.
+    </p>
+
+    <p>
+      I modelli C-27 S e C 33 interpretano questa visione con
+      linee distintive, spazi dedicati al comfort e soluzioni
+      pensate per accompagnarti nelle tue esperienze in acqua.
+    </p>
+
+    <a class="text-link" routerLink="/contatti">
+      Scopri la nostra filosofia
+      <span aria-hidden="true">→</span>
+    </a>
+
   </div>
+
 </section>
 
 
+<!-- ========================================
+     MODELLI IN EVIDENZA
+======================================== -->
+<section class="models-section" id="modelli">
+
+  <div class="section-container">
+
+    <div class="section-heading">
+
+      <div>
+        <span class="section-eyebrow">LA NOSTRA SELEZIONE</span>
+        <h2>Progettati per <span>il mare.</span></h2>
+      </div>
+
+      <a class="text-link models-all-link" routerLink="/flotta">
+        Visita tutta la flotta
+        <span aria-hidden="true">↗</span>
+      </a>
+
+    </div>
+
+    <div class="models-grid">
+
+      <article class="model-card">
+
+        <a class="model-image" routerLink="/flotta" aria-label="Scopri il modello C-27 S">
+
+          <img src="/barca2.png" alt="Imbarcazione in mare" loading="lazy" />
+
+          <span class="model-index">01 / SEA YACHT</span>
+
+          <span class="model-arrow" aria-hidden="true">↗</span>
+
+        </a>
+
+        <div class="model-info">
+
+          <div>
+            <span class="model-category">IL MODELLO</span>
+            <h3>C-27 S</h3>
+          </div>
+
+          <a routerLink="/flotta" class="model-discover">
+            Scopri il modello <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+      </article>
+
+      <article class="model-card">
+
+        <a class="model-image" routerLink="/flotta" aria-label="Scopri il modello C 33">
+
+          <img src="/barca3.jpg" alt="Imbarcazione dal design contemporaneo" loading="lazy" />
+
+          <span class="model-index">02 / SEA YACHT</span>
+
+          <span class="model-arrow" aria-hidden="true">↗</span>
+
+        </a>
+
+        <div class="model-info">
+
+          <div>
+            <span class="model-category">IL MODELLO</span>
+            <h3>C 33</h3>
+          </div>
+
+          <a routerLink="/flotta" class="model-discover">
+            Scopri il modello <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
 
 
+<!-- ========================================
+     GALLERIA
+======================================== -->
+<section class="gallery-section" id="galleria">
+
+  <div class="section-container">
+
+    <div class="gallery-heading">
+      <span class="section-eyebrow">ISPIRAZIONE IN MOVIMENTO</span>
+      <h2>Il mare è tutto <span>da vivere.</span></h2>
+      <p>
+        Orizzonti aperti, giornate senza fretta e il piacere
+        di trovare la propria rotta.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <figure class="gallery-item gallery-item-large">
+        <img src="/barca4.jpg" alt="Imbarcazione ripresa dall'esterno" loading="lazy" />
+        <figcaption>Il piacere della navigazione</figcaption>
+      </figure>
+
+      <figure class="gallery-item">
+        <img src="/barca5.jpg" alt="Imbarcazione in ambiente marino" loading="lazy" />
+        <figcaption>Linee e dettagli</figcaption>
+      </figure>
+
+      <figure class="gallery-item">
+        <img src="/barca1.avif" alt="Imbarcazione in navigazione" loading="lazy" />
+        <figcaption>Nuovi orizzonti</figcaption>
+      </figure>
+
+    </div>
+
+  </div>
+
+</section>
 
 
+<!-- ========================================
+     CTA FINALE
+======================================== -->
+<section class="final-cta">
 
+  <div class="final-cta-content">
 
+    <span class="section-eyebrow">LA TUA PROSSIMA ESPERIENZA</span>
 
+    <h2>
+      Pronto a <span>salpare?</span>
+    </h2>
+
+    <p>
+      Raccontaci cosa cerchi. Ti aiuteremo a conoscere
+      la soluzione più adatta alle tue esigenze.
+    </p>
+
+    <a class="btn-primary-custom" routerLink="/contatti">
+      Parliamone insieme
+    </a>
+
+  </div>
+
+</section>

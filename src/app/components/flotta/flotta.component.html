@@ -1,82 +1,206 @@
 <div class="flotta-page">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1 class="hero-title">La Nostra Flotta</h1>
-      <p class="hero-subtitle">Eccellenza, Prestazioni e Stile Italiano</p>
-      <div class="hero-line"></div>
+
+  <!-- HERO -->
+  <section class="fleet-hero">
+    <div class="fleet-hero__image"></div>
+    <div class="fleet-hero__overlay"></div>
+
+    <div class="fleet-hero__content">
+      <span class="eyebrow">
+        SEA YACHT <span> / </span> LA NOSTRA SELEZIONE
+      </span>
+
+      <h1>Trova la tua<br><em>rotta.</em></h1>
+
+      <p>
+        Imbarcazioni selezionate per chi cerca il piacere
+        di vivere il mare, senza compromessi.
+      </p>
+
+      <a class="hero-scroll" href="#la-flotta" (click)="scrollToFleet($event)">
+
+        <span>ESPLORA LA FLOTTA</span>
+        <span class="hero-scroll__line"></span>
+      </a>
     </div>
   </section>
 
-  <!-- Fleet Grid Section -->
-  <section class="fleet-section">
-    <div class="container">
-      <div class="fleet-grid">
-        <div *ngFor="let boat of boats" class="boat-card" (click)="openDetail(boat)">
-          <div class="card-image-wrapper">
-            <img [src]="boat.image" [alt]="boat.name" class="card-image">
-            <div class="card-overlay">
-              <span class="discover-btn">Scopri di più</span>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="boat-name">{{ boat.name }}</h3>
-            <p class="boat-short-desc">{{ boat.shortDesc }}</p>
-            <div class="boat-specs-mini">
-              <span><i class="bi bi-rulers"></i> {{ boat.specs.length }}</span>
-              <span><i class="bi bi-speedometer2"></i> {{ boat.specs.speed }}</span>
-              <span><i class="bi bi-people"></i> {{ boat.specs.guests }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+
+  <!-- INTRODUZIONE -->
+  <section class="fleet-intro" id="la-flotta">
+    <div class="fleet-intro__label">
+      <span class="section-kicker">LA COLLEZIONE</span>
+      <span class="fleet-intro__rule"></span>
+    </div>
+
+    <div class="fleet-intro__main">
+      <h2>
+        Il mare ha molte forme.<br>
+        <span>La tua è qui.</span>
+      </h2>
+
+      <p>
+        Dalle linee sportive alle imbarcazioni pensate per
+        condividere lunghe giornate in acqua: scopri i modelli
+        della nostra selezione e trova quello più vicino al tuo modo
+        di navigare.
+      </p>
+    </div>
+
+    <div class="fleet-count">
+      <strong>{{ boats.length | number:'2.0' }}</strong>
+      <span>MODELLI<br>IN SELEZIONE</span>
     </div>
   </section>
 
-  <!-- Detail Modal -->
-  <div class="modal-backdrop" *ngIf="selectedBoat" (click)="closeDetail()">
-    <div class="modal-content" (click)="$event.stopPropagation()">
-      <button class="close-btn" (click)="closeDetail()">&times;</button>
-      
-      <div class="modal-body">
-        <div class="modal-image-col">
-          <img [src]="selectedBoat.image" [alt]="selectedBoat.name" class="modal-image">
-        </div>
-        
-        <div class="modal-info-col">
-          <h2 class="modal-title">{{ selectedBoat.name }}</h2>
-          <div class="modal-line"></div>
-          
-          <p class="modal-description">{{ selectedBoat.description }}</p>
-          
-          <div class="specs-grid">
-            <div class="spec-box">
-              <span class="spec-label">Lunghezza</span>
-              <span class="spec-value">{{ selectedBoat.specs.length }}</span>
-            </div>
-            <div class="spec-box">
-              <span class="spec-label">Velocità</span>
-              <span class="spec-value">{{ selectedBoat.specs.speed }}</span>
-            </div>
-            <div class="spec-box">
-              <span class="spec-label">Ospiti</span>
-              <span class="spec-value">{{ selectedBoat.specs.guests }}</span>
-            </div>
-          </div>
 
-          <div class="features-list" *ngIf="selectedBoat.features">
-            <h4>Caratteristiche Principali</h4>
-            <ul>
-              <li *ngFor="let feature of selectedBoat.features">
-                <i class="bi bi-check2-circle"></i> {{ feature }}
-              </li>
-            </ul>
-          </div>
-
-          <button class="contact-btn">Richiedi Preventivo</button>
-        </div>
-      </div>
+  <!-- GRIGLIA IMBARCAZIONI -->
+  <section class="fleet-list">
+    <div class="fleet-list__header">
+      <span>LA SELEZIONE SEA YACHT</span>
+      <span>DESIGN · COMFORT · NAVIGAZIONE</span>
     </div>
+
+    <div class="fleet-grid">
+
+      <article class="boat-card" *ngFor="let boat of boats; let i = index">
+
+        <button type="button" class="boat-card__image" (click)="openDetail(boat)"
+          [attr.aria-label]="'Scopri ' + boat.name">
+
+          <img [src]="boat.image" [alt]="boat.name" loading="lazy">
+
+          <span class="boat-card__number">
+            {{ (i + 1) | number:'2.0' }}
+          </span>
+
+          <span class="boat-card__action">
+            Scopri il modello
+            <span aria-hidden="true">↗</span>
+          </span>
+        </button>
+
+        <div class="boat-card__body">
+          <div class="boat-card__heading">
+            <span class="boat-card__category">SEA YACHT COLLECTION</span>
+            <h3>{{ boat.name }}</h3>
+            <p>{{ boat.shortDesc }}</p>
+          </div>
+
+          <div class="boat-card__footer">
+            <div class="boat-card__spec">
+              <span>LUNGHEZZA</span>
+              <strong>{{ boat.specs.length }}</strong>
+            </div>
+
+            <div class="boat-card__spec">
+              <span>VELOCITÀ</span>
+              <strong>{{ boat.specs.speed }}</strong>
+            </div>
+
+            <div class="boat-card__spec">
+              <span>OSPITI</span>
+              <strong>{{ boat.specs.guests }}</strong>
+            </div>
+
+            <button type="button" class="boat-card__arrow" (click)="openDetail(boat)"
+              [attr.aria-label]="'Visualizza dettagli di ' + boat.name">
+              ↗
+            </button>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+  </section>
+
+
+  <!-- CTA FINALE -->
+  <section class="fleet-cta">
+    <div class="fleet-cta__content">
+      <span class="section-kicker">IL PROSSIMO PASSO</span>
+
+      <h2>La tua prossima<br><em>avventura inizia qui.</em></h2>
+
+      <p>
+        Hai individuato il modello che fa per te?
+        Parliamone insieme.
+      </p>
+
+      <a routerLink="/contatti" class="fleet-cta__button">
+        Richiedi informazioni
+      </a>
+    </div>
+
+    <span class="fleet-cta__watermark">SEA</span>
+  </section>
+
+
+  <!-- DETTAGLIO MODELLO -->
+  <div class="boat-modal" *ngIf="selectedBoat as boat" (click)="closeDetail()" (keydown.escape)="closeDetail()">
+
+    <section class="boat-modal__panel" role="dialog" aria-modal="true" [attr.aria-label]="'Dettagli ' + boat.name"
+      (click)="$event.stopPropagation()">
+
+      <button type="button" class="boat-modal__close" aria-label="Chiudi dettagli" (click)="closeDetail()">
+        ×
+      </button>
+
+      <div class="boat-modal__visual">
+        <img [src]="boat.image" [alt]="boat.name">
+
+        <span class="boat-modal__image-label">
+          SEA YACHT / {{ boat.name }}
+        </span>
+      </div>
+
+      <div class="boat-modal__details">
+        <span class="section-kicker">SCOPRI IL MODELLO</span>
+
+        <h2>{{ boat.name }}</h2>
+
+        <p class="boat-modal__subtitle">{{ boat.shortDesc }}</p>
+
+        <div class="boat-modal__divider"></div>
+
+        <p class="boat-modal__description">
+          {{ boat.description }}
+        </p>
+
+        <div class="boat-modal__specs">
+          <div>
+            <span>LUNGHEZZA</span>
+            <strong>{{ boat.specs.length }}</strong>
+          </div>
+
+          <div>
+            <span>VELOCITÀ</span>
+            <strong>{{ boat.specs.speed }}</strong>
+          </div>
+
+          <div>
+            <span>OSPITI</span>
+            <strong>{{ boat.specs.guests }}</strong>
+          </div>
+        </div>
+
+        <div class="boat-modal__features" *ngIf="boat.features?.length">
+          <h3>Dettagli che fanno la differenza</h3>
+
+          <ul>
+            <li *ngFor="let feature of boat.features">
+              <span aria-hidden="true">↗</span>
+              {{ feature }}
+            </li>
+          </ul>
+        </div>
+
+        <a class="boat-modal__contact" routerLink="/contatti" (click)="closeDetail()">
+          Richiedi informazioni
+        </a>
+      </div>
+    </section>
   </div>
+
 </div>
