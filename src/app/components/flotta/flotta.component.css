@@ -58,7 +58,7 @@ button {
 
 .fleet-hero__image {
   z-index: -2;
-  background-image: url('https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?auto=format&fit=crop&q=85&w=2200');
+  background-image: url('/barca7.avif');
   background-position: center 54%;
   background-size: cover;
   animation: heroReveal 1.2s ease-out both;
